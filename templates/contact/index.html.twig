@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog Coiffure Afro - Contact
+{% endblock %}
+
+{% block body %}
+
+	<h1>Formaliser votre demande devis
+	</h1>
+
+	{# <div>
+		{{ form(form) }}
+		</div> #}
+
+		<div>
+			{{ form_start(form) }}
+
+			{{ form_row(form.email) }}
+			{{ form_row(form.telephone, {
+            label: 'Téléphone'
+        }) }}
+			{{ form_row(form.subject, {
+            label: 'Type de prestation désirée'
+        }) }}
+			{{ form_row(form.content, {
+            label: 'Demande spécifique'
+        }) }}	
+
+			{{ form_row(form.confirm, {
+            label: 'Envoyer'
+        }) }}
+
+			{{ form_end(form) }}
+		</div>
+
+	{% endblock %}

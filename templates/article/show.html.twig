@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prestation
+{% endblock %}
+
+{% block body %}
+	<h1>Prestation</h1>
+
+	<table class="table">
+		<tbody>
+			{# <tr>
+				<th>Id</th>
+				<td>{{ article.id }}</td>
+			</tr> #}
+			<tr>
+				<th>Titre</th>
+				<td>{{ article.title }}</td>
+			</tr>
+			<tr>
+				<th>Content</th>
+				<td>{{ article.content|raw }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div>
+		<a href="{{ path('app_category_show', {'id': article.id}) }}">Retour</a>
+	</div>
+	<br>
+	<div>
+		<a href="{{ path('app_comment_new', {'id': article.id}) }}">Ajouter un avis</a>
+	</div>
+
+	<div> 
+		{% for comment in comments %}
+			<div>
+			{# {{ comment.user.email }} a dit : #}
+			Nouvel avis :</div>
+			<div>{{ comment.content }}</div>
+		{% endfor %}
+	</div>
+
+
+{% endblock %}
