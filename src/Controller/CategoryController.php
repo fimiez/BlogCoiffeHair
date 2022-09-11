@@ -32,8 +32,5 @@ class CategoryController extends AbstractController
             'articles' => $articles,
         ]);
     }
-
-   
-
     
 }

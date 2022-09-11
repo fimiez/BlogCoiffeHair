@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\ContactType;
 use Symfony\Component\Mime\Email;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,12 +26,21 @@ class ContactController extends AbstractController
             $phone   = $form->get('telephone')->getData();
             $content = $form->get('content')->getData();
 
-            $email = (new Email())
-                ->from($address)
-                ->to('admin@admin.com')
-                ->subject($subject)
-                ->text($phone)
-                ->text($content);
+
+            $email = (new TemplatedEmail())
+            ->from($address)
+            ->to('admin@admin.com')
+            ->subject($subject)
+            ->text($content)
+
+            ->htmlTemplate('contact/signup.html.twig')
+        
+            ->context([
+                'mail'=> $address,
+                'telephone'=> $phone,
+                'subject' => $subject,
+                'content' => $content,
+            ]);
 
             $mailer->send($email);
 
